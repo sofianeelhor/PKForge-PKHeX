@@ -243,6 +243,11 @@ public enum GameVersion : byte
     /// Pokémon Champions (NX)
     /// </summary>
     CP = 53,
+
+    /// <summary>
+    /// Pokémon Luminescent Platinum (Brilliant Diamond mod).
+    /// </summary>
+    BDSPLUMI = 54,
     #endregion
 
     // The following values are not actually stored values in pk data,
