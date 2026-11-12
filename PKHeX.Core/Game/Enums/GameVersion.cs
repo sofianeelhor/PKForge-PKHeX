@@ -544,5 +544,14 @@ public enum GameVersion : byte
     /// Emerald &amp; FireRed &amp; LeafGreen version group.
     /// </summary>
     EFL,
+
+    /// <summary>
+    /// Pokémon Luminescent Platinum (Brilliant Diamond mod) [<see cref="SAV8BSLuminescent"/>] identifier.
+    /// </summary>
+    /// <remarks>
+    /// Not a stored value: Luminescent Platinum Pokémon keep the retail <see cref="BD"/>/<see cref="SP"/> version byte.
+    /// Kept after the stored range so it never collides with an official version ID.
+    /// </remarks>
+    BDSPLUMI,
     #endregion
 }
