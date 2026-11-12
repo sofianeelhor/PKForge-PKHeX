@@ -205,6 +205,9 @@ public static class EntityConverter
         var type = PKH.GetType(destType);
         if (type is not HomeGameDataFormat.None)
             result = pkh.ConvertToPKM(type);
+        // PK3 maps to the PK8 side data (FR/LG Switch transfers); HOME never sends anything back to a PK3.
+        if (result is not null && result.GetType() != destType)
+            result = null;
         return result != null;
     }
 
@@ -218,6 +221,13 @@ public static class EntityConverter
             var converted = pkh.ConvertToPKM(type);
             if (converted is null)
                 result = IncompatibleSpecies;
+            else if (converted.GetType() != destType)
+            {
+                // PK3 maps to the PK8 side data (FR/LG Switch transfers); HOME never sends anything back to a PK3.
+                // Returning the PK8 would make ConvertPKM loop forever (PK8 -> HOME -> PK8 ...).
+                result = NoTransferRoute;
+                return null;
+            }
             return converted;
         }
 
